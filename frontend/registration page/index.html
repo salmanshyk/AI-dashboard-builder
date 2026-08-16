@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AI Dashboard Builder - Register</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- LEFT SECTION -->
+    <section class="left-section">
+
+      <!-- Logo -->
+      <div class="logo">
+        <div class="logo-icon">AI</div>
+
+        <div class="logo-text">
+          <span>AI Dashboard</span>
+          <span>Builder</span>
+        </div>
+      </div>
+
+
+      <!-- Registration Card -->
+      <div class="register-card">
+
+        <h1>Create your account</h1>
+
+        <p class="subtitle">
+          Start building AI-powered dashboards in minutes.
+        </p>
+
+        <form id="registerForm">
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="name">Full name</label>
+
+            <input
+              type="text"
+              id="name"
+              placeholder="Jane Doe"
+              required
+            />
+          </div>
+
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email address</label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="name@example.com"
+              required
+            />
+          </div>
+
+
+          <!-- Password -->
+          <div class="form-group">
+
+            <label for="password">Password</label>
+
+            <div class="password-box">
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                required
+              />
+
+              <button
+                type="button"
+                class="show-button"
+                onclick="togglePassword('password', this)"
+              >
+                Show
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+
+            <label for="confirmPassword">
+              Confirm password
+            </label>
+
+            <div class="password-box">
+
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm your password"
+                required
+              />
+
+              <button
+                type="button"
+                class="show-button"
+                onclick="togglePassword('confirmPassword', this)"
+              >
+                Show
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- Button -->
+          <button
+            type="submit"
+            class="create-button"
+          >
+            Create account
+          </button>
+
+        </form>
+
+
+        <p class="login-text">
+          Already have an account?
+          <a href="#">Log in</a>
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- RIGHT SECTION -->
+    <section class="right-section">
+
+      <!-- AI Graphic -->
+      <div class="ai-graphic">
+
+        <div class="node node-1"></div>
+        <div class="node node-2"></div>
+        <div class="node node-3"></div>
+
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+
+        <div class="ai-core">
+          AI
+        </div>
+
+      </div>
+
+
+      <!-- Right Text -->
+      <div class="hero-text">
+
+        <h2>
+          Transform data.<br />
+          Build insights.<br />
+          AI-driven dashboards.
+        </h2>
+
+        <p>
+          Turn raw datasets into clear dashboards with AI.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
