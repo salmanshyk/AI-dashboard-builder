@@ -23,3 +23,13 @@ app.include_router(auth.router)
 @app.get("/")
 async def health_check():
     return {"status": "ok", "message": "FastAPI is running successfully with MySQL!"}
+
+    from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"], # Sirf hamare React frontend ko allow kar rahe hain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)

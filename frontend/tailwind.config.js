@@ -2,17 +2,10 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // Yeh line batati hai ki yahan CSS apply karni hai!
   ],
   theme: {
-    extend: {
-      colors: {
-        primary: "#4F46E5",   // Indigo
-        secondary: "#06B6D4", // Bright Cyan
-        dark: "#475569",      // Slate Gray
-        light: "#F8FAFC",     // Light Slate/White
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }
