@@ -1,35 +1,32 @@
-function togglePassword(inputId, button) {
-  const input = document.getElementById(inputId);
+document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Page refresh hone se roko
 
-  if (input.type === "password") {
-    input.type = "text";
-    button.textContent = "Hide";
-  } else {
-    input.type = "password";
-    button.textContent = "Show";
-  }
-}
+    const fullName = document.querySelector("input[placeholder*='name']").value;
+    const email = document.querySelector("input[type='email']").value;
+    const password = document.querySelector("input[type='password']").value;
 
+    try {
+        const response = await fetch("http://localhost:8000/api/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+        });
 
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (event) {
+        const data = await response.json();
 
-    event.preventDefault();
-
-    const password =
-      document.getElementById("password").value;
-
-    const confirmPassword =
-      document.getElementById("confirmPassword").value;
-
-    if (password !== confirmPassword) {
-
-      alert("Passwords do not match.");
-
-      return;
+        if (response.ok) {
+            alert("Registration successful and saved to PostgreSQL! 🎉");
+            // Chahe toh yahan login page par redirect kar sakte ho
+        } else {
+            alert("Error: " + (data.detail || "Something went wrong"));
+        }
+    } catch (error) {
+        console.error("Connection error:", error);
+        alert("Failed to connect to the backend server!");
     }
-
-    alert("Registration form completed successfully!");
-  });
-  
+});

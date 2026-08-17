@@ -1,35 +1,29 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from core.database import engine, Base
-from models import user
-from routers import auth
+from routers.auth import router as auth_router
+from core.database import engine
+from models.user import Base
 
+# Database tables auto-create karne ke liye
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="AI Dashboard API")
-
-# --- YAHAN CORS ADD KIYA HAI ---
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5174"],  # Frontend ka URL allow kar rahe hain
-    allow_credentials=True,
-    allow_methods=["*"],  # Saare methods (GET, POST, etc.) allow kar rahe hain
-    allow_headers=["*"],
+app = FastAPI(
+    title="AI Dashboard Builder API",
+    version="1.0"
 )
-# -------------------------------
 
-app.include_router(auth.router)
-
-@app.get("/")
-async def health_check():
-    return {"status": "ok", "message": "FastAPI is running successfully with MySQL!"}
-
-    from fastapi.middleware.cors import CORSMiddleware
-
+# CORS Middleware (Frontend aur Backend ke connection ke liye zaroori hai)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"], # Sirf hamare React frontend ko allow kar rahe hain
+    allow_origins=["*"],  # Sabhi origins allow hain (jaise 127.0.0.1:5500)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Auth router ko include kar rahe hain taaki /api/auth/signup aur /login chalein
+app.include_router(auth_router)
+
+@app.get("/")
+def read_root():
+    return {"message": "AI Dashboard Builder Backend is running successfully!"}
