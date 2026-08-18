@@ -1,12 +1,38 @@
+from core.security import verify_access_token
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from core.database import get_db
 from models.user import User
 from schemas.user import UserCreate, UserResponse, Token
-from core.security import get_password_hash, verify_password, create_access_token
+from core.security import (
+    get_password_hash,
+    verify_password,
+    create_access_token,
+    verify_access_token
+)
 
 # Router define kar rahe hain jiska prefix /api/auth hoga
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
+
+# JWT Bearer token read karne ke liye
+bearer_scheme = HTTPBearer()
+
+# Current request se JWT token nikalna
+def get_bearer_token(
+    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme)
+):
+    token = credentials.credentials
+
+    payload = verify_access_token(token)
+
+    if payload is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token"
+        )
+
+    return payload
 
 # 1. SIGNUP API
 @router.post("/signup", response_model=UserResponse)
@@ -42,3 +68,11 @@ def login(user_data: UserCreate, db: Session = Depends(get_db)):
     # Agar sab sahi hai, toh JWT Token generate karke bhejo
     access_token = create_access_token(data={"sub": user.email})
     return {"access_token": access_token, "token_type": "bearer"}
+
+    # Protected test endpoint
+@router.get("/me")
+def get_current_user(payload: dict = Depends(get_bearer_token)):
+    return {
+        "message": "JWT is valid",
+        "user_email": payload.get("sub")
+    }
