@@ -1,13 +1,19 @@
-import React from 'react';
-import Register from './pages/Register'; // Naya page import kiya
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
-  return (
-    <div>
-      {/* Yahan hum apne Register page ko render karwa rahe hain */}
-      <Register /> 
-    </div>
-  );
+  const path = window.location.pathname;
+
+  if (path === "/register") {
+    return <Register />;
+  }
+
+  if (path === "/forgot-password") {
+    return <ForgotPassword />;
+  }
+
+  return <Login />;
 }
 
 export default App;

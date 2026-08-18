@@ -182,3 +182,67 @@
     border-right-color: var(--border);
   }
 }
+.social-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-button {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.social-button:hover {
+  background: #f8fafc;
+}
+
+.google-icon {
+  font-size: 21px;
+  font-weight: 700;
+  color: #4285f4;
+}
+
+.microsoft-icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+}
+
+.microsoft-icon span:nth-child(1) {
+  background: #f25022;
+}
+
+.microsoft-icon span:nth-child(2) {
+  background: #7fba00;
+}
+
+.microsoft-icon span:nth-child(3) {
+  background: #00a4ef;
+}
+
+.microsoft-icon span:nth-child(4) {
+  background: #ffb900;
+}
+
+.phone-icon {
+  font-size: 20px;
+  color: #4f46e5;
+}

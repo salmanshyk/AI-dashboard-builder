@@ -54,9 +54,12 @@ body {
   margin-bottom: 32px;
 }
 
-.logo-icon {
-  width: 44px;
-  height: 44px;
+.logo-image {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  display: block;
+}
 
   border-radius: 10px;
 
@@ -124,18 +127,17 @@ body {
    FORM
 ========================= */
 
-.form-group {
-  margin-bottom: 16px;
+..form-group {
+  margin-bottom: 18px;
 }
 
 .form-group label {
   display: block;
-
-  margin-bottom: 6px;
-
-  font-size: 12px;
-
-  color: #66727f;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #17263a;
+  letter-spacing: 0.5px;
 }
 
 .form-group input {

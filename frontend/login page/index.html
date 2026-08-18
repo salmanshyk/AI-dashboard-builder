@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dashboard Builder - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- LEFT SIDE -->
+    <div class="left-section">
+
+        <div class="logo">
+            <div class="logo-icon">AI</div>
+            <div class="logo-text">
+                <strong>AI Dashboard</strong>
+                <strong>Builder</strong>
+            </div>
+        </div>
+
+        <div class="login-card">
+
+            <h1>Welcome back.</h1>
+            <p class="subtitle">Login to access your AI Dashboard.</p>
+
+            <!-- EMAIL -->
+            <label>Email Address</label>
+            <input
+                type="email"
+                placeholder="your.email@example.com"
+            >
+
+            <!-- PASSWORD -->
+            <div class="password-heading">
+                <label>Password</label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <input
+                type="password"
+                placeholder="Enter your password"
+            >
+
+            <!-- LOGIN -->
+            <button class="login-btn">Sign In</button>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <!-- GOOGLE -->
+            <button class="social-btn google-btn" onclick="googleLogin()">
+                <span class="social-icon">G</span>
+                Continue with Google
+            </button>
+
+            <!-- MICROSOFT -->
+            <button class="social-btn microsoft-btn" onclick="microsoftLogin()">
+                <span class="microsoft-icon">
+                    <span></span><span></span>
+                    <span></span><span></span>
+                </span>
+                Continue with Microsoft
+            </button>
+
+            <!-- PHONE -->
+            <button class="social-btn phone-btn" onclick="phoneLogin()">
+                <span class="phone-icon">☎</span>
+                Continue with Phone Number
+            </button>
+
+            <p class="signup-text">
+                Don't have an account?
+                <a href="#">Sign Up.</a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+
+        <div class="ai-visual">
+
+            <div class="ai-circle">
+                AI
+            </div>
+
+            <div class="node node1"></div>
+            <div class="node node2"></div>
+            <div class="node node3"></div>
+            <div class="node node4"></div>
+
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            <div class="line line4"></div>
+
+        </div>
+
+        <div class="hero-text">
+            <h2>
+                TRANSFORM DATA.<br>
+                BUILD INSIGHTS.<br>
+                AI-DRIVEN DASHBOARDS.
+            </h2>
+
+            <p>
+                Turn raw datasets into clear and powerful
+                dashboards with AI.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
