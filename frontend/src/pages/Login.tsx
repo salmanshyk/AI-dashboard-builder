@@ -30,10 +30,8 @@ function Login() {
   return (
     <main className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8 flex items-center justify-center">
       <div className="w-full max-w-7xl min-h-[720px] overflow-hidden rounded-3xl bg-white shadow-xl grid grid-cols-1 lg:grid-cols-2">
-
         {/* LEFT SIDE */}
         <section className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-16">
-
           {/* Branding */}
           <div className="mb-8 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-lg font-bold text-white">
@@ -48,7 +46,6 @@ function Login() {
 
           {/* Login Card */}
           <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-
             <h1 className="text-3xl font-bold text-slate-800">
               Welcome back
             </h1>
@@ -58,7 +55,6 @@ function Login() {
             </p>
 
             <form onSubmit={handleSubmit} className="mt-7 space-y-5">
-
               {/* Email */}
               <div>
                 <label
@@ -129,45 +125,47 @@ function Login() {
             {/* Divider */}
             <div className="my-6 flex items-center gap-3">
               <div className="h-px flex-1 bg-slate-200" />
-              <span className="text-xs text-slate-400">OR CONTINUE WITH</span>
+              <span className="text-xs text-slate-400">
+                OR CONTINUE WITH
+              </span>
               <div className="h-px flex-1 bg-slate-200" />
             </div>
 
-         <div className="mt-6 flex flex-col gap-3">
-  {/* Google */}
-  <button
-    type="button"
-    className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50"
-  ><button
-  type="button"
-  className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50
-    
+            {/* Social Login Buttons */}
+            <div className="mt-6 flex flex-col gap-3">
+              {/* Google */}
+              <button
+                type="button"
+                className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                <span className="text-lg font-bold text-[#4285F4]">G</span>
+                <span>Continue with Google</span>
+              </button>
 
-  
-  {/* Microsoft */}
-  <button
-    type="button"
-    className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50"
-  
-    <span className="grid grid-cols-2 gap-[2px]">
-      <span className="h-[9px] w-[9px] bg-[#F25022]" />
-      <span className="h-[9px] w-[9px] bg-[#7FBA00]" />
-      <span className="h-[9px] w-[9px] bg-[#00A4EF]" />
-      <span className="h-[9px] w-[9px] bg-[#FFB900]" />
-    </span>
+              {/* Microsoft */}
+              <button
+                type="button"
+                className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                <span className="grid grid-cols-2 gap-[2px]">
+                  <span className="h-[9px] w-[9px] bg-[#F25022]" />
+                  <span className="h-[9px] w-[9px] bg-[#7FBA00]" />
+                  <span className="h-[9px] w-[9px] bg-[#00A4EF]" />
+                  <span className="h-[9px] w-[9px] bg-[#FFB900]" />
+                </span>
 
-    <span>Continue with Microsoft</span>
-  </button>
+                <span>Continue with Microsoft</span>
+              </button>
 
-  {/* Phone Number */}
-  <button
-    type="button"
-    className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50"
-  >
-    <span className="text-lg">📱</span>
-    <span>Continue with Phone Number</span>
-  </button>
-</div>
+              {/* Phone Number */}
+              <button
+                type="button"
+                className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                <span className="text-lg">📱</span>
+                <span>Continue with Phone Number</span>
+              </button>
+            </div>
 
             {/* Register */}
             <p className="mt-6 text-center text-sm text-slate-500">
@@ -184,10 +182,8 @@ function Login() {
 
         {/* RIGHT SIDE */}
         <section className="relative hidden overflow-hidden bg-gradient-to-br from-slate-50 to-cyan-50 lg:block">
-
           {/* AI Graphic */}
           <div className="absolute left-1/2 top-16 h-80 w-[520px] -translate-x-1/2">
-
             {/* Connection lines */}
             <div className="absolute left-28 top-20 h-px w-44 rotate-[20deg] bg-cyan-300" />
             <div className="absolute left-64 top-20 h-px w-40 -rotate-[18deg] bg-cyan-300" />
