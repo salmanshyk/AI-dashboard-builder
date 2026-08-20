@@ -1,19 +1,32 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
-  const path = window.location.pathname;
+  return (
+    <BrowserRouter>
+      <Routes>
 
-  if (path === "/register") {
-    return <Register />;
-  }
+        {/* Login */}
+        <Route path="/login" element={<Login />} />
 
-  if (path === "/forgot-password") {
-    return <ForgotPassword />;
-  }
+        {/* Registration */}
+        <Route path="/register" element={<Register />} />
 
-  return <Login />;
+        {/* Forgot Password */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+
+        {/* Default */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
+        {/* Unknown URL */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

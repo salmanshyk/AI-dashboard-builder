@@ -1,164 +1,192 @@
 import { useState, type FormEvent } from "react";
+import logo from "../assets/ai-dashboard-logo.png.png";
+import hero from "../assets/hero.png";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [phone, setPhone] = useState("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    setError("");
-    setSuccess("");
-
-    if (!email.trim()) {
-      setError("Please enter your email address.");
+    if (!email.trim() && !phone.trim()) {
+      alert("Please enter your email address or phone number.");
       return;
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    setSuccess("Reset link has been sent to your email.");
+    alert("Recovery link or OTP will be sent to your registered email or phone.");
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] px-4 py-8">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F2942]">
 
-      {/* AI Background Graphic */}
-      <div className="pointer-events-none fixed right-[-180px] top-[180px] hidden lg:block">
-        <div className="relative h-[450px] w-[450px]">
+      {/* HEADER */}
+      <header className="flex items-start justify-between px-6 py-5">
 
-          <div className="absolute right-0 top-16 flex h-64 w-64 items-center justify-center rounded-full border-[30px] border-cyan-200/40 bg-cyan-500">
-            <span className="text-5xl font-bold text-white">
-              AI
-            </span>
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <img
+            src={logo}
+            alt="AI Dashboard Builder"
+            className="w-11 h-11 object-contain"
+          />
+
+          <div>
+            <h1 className="text-lg font-bold leading-tight">
+              AI Dashboard
+            </h1>
+            <h1 className="text-lg font-bold leading-tight">
+              Builder
+            </h1>
           </div>
-
-          <div className="absolute left-10 top-0 h-24 w-24 rounded-full bg-cyan-300/40" />
-
-          <div className="absolute left-20 top-16 h-1 w-52 rotate-[25deg] bg-cyan-300/50" />
-
-          <div className="absolute left-32 top-72 h-14 w-14 rounded-full bg-cyan-300/30" />
-
-          <div className="absolute left-32 top-28 h-1 w-40 -rotate-[65deg] bg-cyan-300/50" />
-
         </div>
-      </div>
 
-      {/* Main */}
-      <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
+    
 
-        <div className="w-full max-w-[590px]">
+      </header>
 
-          {/* Card */}
-          <div className="rounded-xl border border-slate-200 bg-white px-7 py-10 shadow-lg sm:px-12">
 
-            {/* Logo */}
-            <div className="mb-8 flex justify-center">
+      {/* MAIN */}
+      <main className="flex min-h-[calc(100vh-100px)]">
 
-              <div className="flex items-center gap-3">
+        {/* LEFT SIDE */}
+        <section className="w-1/2 flex items-start justify-center px-5 py-8">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[#06B6D4] to-[#4F46E5] text-lg font-bold text-white shadow-md">
-                  AI
+          <div className="w-full max-w-[500px] bg-white border border-slate-200 rounded-lg shadow-sm p-5">
+
+            {/* TITLE */}
+            <h2 className="text-2xl font-bold text-[#0F2942]">
+              Recover Your Account
+            </h2>
+
+            <p className="mt-1 text-sm text-[#64748B]">
+              Hi, Missed Your Password? 👋 Let's get you a new one!
+            </p>
+
+
+            {/* FORM */}
+            <form onSubmit={handleSubmit} className="mt-5">
+
+              {/* EMAIL */}
+              <div>
+                <label className="block text-sm font-semibold mb-2">
+                  Recovery Email Address
+                </label>
+
+                <div className="relative">
+
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                    ✉
+                  </span>
+
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your-email@example.com"
+                    className="w-full h-10 rounded-md border border-slate-400 pl-10 pr-4 text-sm outline-none focus:border-[#536BEA] focus:ring-2 focus:ring-blue-100"
+                  />
+
                 </div>
+              </div>
 
-                <div className="text-[17px] font-bold leading-tight text-slate-800">
-                  <div>AI Dashboard</div>
-                  <div>Builder</div>
+
+              {/* PHONE */}
+              <div className="mt-4">
+
+                <label className="block text-sm font-semibold mb-2">
+                  Recovery Phone Number
+                </label>
+
+                <div className="relative">
+
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                    ☎
+                  </span>
+
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+91 98765 43210"
+                    className="w-full h-10 rounded-md border border-slate-400 pl-10 pr-4 text-sm outline-none focus:border-[#536BEA] focus:ring-2 focus:ring-blue-100"
+                  />
+
                 </div>
 
               </div>
 
-            </div>
 
-            {/* Heading */}
-            <div className="text-center">
-
-              <h1 className="text-4xl font-semibold text-slate-600">
-                Forgot Password?
-              </h1>
-
-              <p className="mt-3 text-lg leading-7 text-slate-500">
-                No worries! Enter your registered email address and we'll
-                <br className="hidden sm:block" />
-                send you a reset link.
+              {/* INFORMATION */}
+              <p className="mt-4 text-sm text-[#64748B]">
+                A recovery link or OTP will be sent to your registered
+                email or phone number.
               </p>
 
-            </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="mt-8">
-
-              <label
-                htmlFor="email"
-                className="mb-2 block text-sm font-semibold text-slate-600"
-              >
-                Email address
-              </label>
-
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your.email@example.com"
-                className="h-12 w-full rounded-lg border border-slate-300 px-4 text-base text-slate-700 outline-none transition focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/20"
-              />
-
-              {error && (
-                <p className="mt-2 text-sm font-medium text-red-500">
-                  {error}
-                </p>
-              )}
-
-              {success && (
-                <p className="mt-2 text-sm font-medium text-green-600">
-                  {success}
-                </p>
-              )}
-
-              {/* Button */}
+              {/* BUTTON */}
               <button
                 type="submit"
-                className="mt-5 h-12 w-full rounded-lg bg-[#4F46E5] font-semibold text-white transition hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="w-full h-10 mt-5 rounded-md bg-[#536BEA] text-white text-sm font-semibold hover:bg-[#455DDB] transition"
               >
-                Send reset email
+                Send Recovery Link
               </button>
 
             </form>
 
-            {/* Back to Login */}
-            <div className="mt-6 text-center">
 
+            {/* LOGIN */}
+            <p className="text-center text-sm text-[#64748B] mt-4">
+              Already have an account?{" "}
               <button
                 type="button"
-                onClick={() => {
-                  window.location.href = "/login";
-                }}
-                className="font-medium text-[#06B6D4] transition hover:text-[#4F46E5]"
+                className="text-[#475569] font-medium hover:text-[#536BEA]"
               >
-                Back to Log in
+                Log in
               </button>
-
-            </div>
+            </p>
 
           </div>
 
-          {/* Footer */}
-          <footer className="mt-24 text-center text-sm text-slate-500">
-            © Copyright. 2026 AI Dashboard Builder
-            <span className="mx-2">·</span>
-            <span className="underline">Terms</span>
-            <span className="mx-2">·</span>
-            <span className="underline">Privacy</span>
-          </footer>
+        </section>
 
-        </div>
+
+        {/* RIGHT SIDE */}
+        <section className="flex w-1/2 bg-[#EFFAFF] items-center justify-center px-10">
+
+          <div className="w-full max-w-[520px]">
+
+            {/* AI IMAGE */}
+            <div className="flex justify-center mb-6">
+
+              <img
+                src={hero}
+                alt="AI Dashboard"
+                className="w-[300px] h-[300px] object-contain"
+              />
+
+            </div>
+
+
+            {/* RIGHT SIDE TEXT */}
+            <h2 className="text-3xl font-bold leading-tight text-[#0F2942]">
+              Transform data.
+              <br />
+              Build insights.
+              <br />
+              AI-driven dashboards.
+            </h2>
+
+            <p className="mt-4 text-base text-[#64748B]">
+              Turn raw datasets into clear dashboards with AI.
+            </p>
+
+          </div>
+
+        </section>
 
       </main>
+
     </div>
   );
 }
