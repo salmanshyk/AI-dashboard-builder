@@ -199,24 +199,7 @@ function Login() {
 
 
                 {/* MICROSOFT */}
-                <button
-                  type="button"
-                  className="mt-3 flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white font-medium text-[#0F2942] transition hover:bg-slate-50"
-                >
-
-                  <span className="grid grid-cols-2 gap-[2px]">
-                    <span className="h-[8px] w-[8px] bg-[#F25022]" />
-                    <span className="h-[8px] w-[8px] bg-[#7FBA00]" />
-                    <span className="h-[8px] w-[8px] bg-[#00A4EF]" />
-                    <span className="h-[8px] w-[8px] bg-[#FFB900]" />
-                  </span>
-
-                  <span>
-                    Continue with Microsoft
-                  </span>
-
-                </button>
-
+                
 
                 {/* PHONE */}
                 <button
