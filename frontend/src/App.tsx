@@ -11,16 +11,10 @@ function App() {
       <Routes>
 
         {/* Login */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+        <Route path="/login" element={<Login />} />
 
-        {/* Registration */}
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+        {/* Register */}
+        <Route path="/register" element={<Register />} />
 
         {/* Forgot Password */}
         <Route
@@ -34,13 +28,13 @@ function App() {
           element={<ChangePassword />}
         />
 
-        {/* Default */}
+        {/* Home */}
         <Route
           path="/"
           element={<Navigate to="/login" replace />}
         />
 
-        {/* Unknown URL */}
+        {/* Wrong URL */}
         <Route
           path="*"
           element={<Navigate to="/login" replace />}

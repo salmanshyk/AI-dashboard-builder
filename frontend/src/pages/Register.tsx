@@ -1,198 +1,148 @@
-import { useState, type FormEvent } from "react";
-import logo from "../assets/ai-dashboard-logo.png.png";
+import { Link } from "react-router-dom";
 import hero from "../assets/hero.png";
 
 function Register() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!fullName || !email || !password || !confirmPassword) {
-      alert("Please fill all fields.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    alert("Account created successfully!");
-  };
-
   return (
-    <div className="min-h-screen flex bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#F8FAFC] flex">
 
-      {/* ================= LEFT SIDE ================= */}
-      <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center px-6 py-10">
+      {/* LEFT */}
+      <div className="w-full lg:w-1/2 flex flex-col">
 
-        <div className="w-full max-w-[550px]">
+        {/* Logo */}
+        <div className="px-8 py-8 lg:px-16">
 
-          {/* LOGO */}
-          <div className="mb-6 flex items-center gap-3">
+          <div className="flex items-center gap-3">
 
             <img
-              src={logo}
+              src="/src/assets/ai-dashboard-logo.png.png"
               alt="AI Dashboard Builder"
-              className="w-14 h-14 object-contain"
+              className="w-12 h-12 object-contain"
             />
 
-            <div className="text-left">
-              <h1 className="text-xl font-bold leading-tight text-[#0F2942]">
-                AI Dashboard
-              </h1>
-
-              <h1 className="text-xl font-bold leading-tight text-[#0F2942]">
-                Builder
-              </h1>
+            <div className="text-[#0F2942] font-bold text-xl leading-tight">
+              AI Dashboard
+              <br />
+              Builder
             </div>
 
           </div>
 
+        </div>
 
-          {/* REGISTRATION CARD */}
-          <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-8">
+        {/* FORM */}
+        <div className="flex-1 flex items-center justify-center px-6 pb-10">
 
-            {/* TITLE */}
-            <h2 className="text-3xl font-bold text-[#0F2942] mb-2">
+          <div className="w-full max-w-[560px] bg-white border border-gray-200 rounded-xl shadow-sm p-8">
+
+            <h1 className="text-3xl font-bold text-[#0F2942]">
               Create your account
-            </h2>
+            </h1>
 
-            <p className="text-[#64748B] mb-7">
+            <p className="mt-2 text-gray-500">
               Start building AI-powered dashboards in minutes.
             </p>
 
+            {/* Name */}
+            <div className="mt-8">
 
-            {/* FORM */}
-            <form onSubmit={handleSubmit}>
+              <label className="block text-sm font-semibold mb-2">
+                Full name
+              </label>
 
-              {/* FULL NAME */}
-              <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Jane Doe"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
+              />
 
-                <label className="block text-sm font-semibold mb-2 text-[#0F2942]">
-                  Full name
-                </label>
+            </div>
+
+            {/* Email */}
+            <div className="mt-5">
+
+              <label className="block text-sm font-semibold mb-2">
+                Email address
+              </label>
+
+              <input
+                type="email"
+                placeholder="name@example.com"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
+              />
+
+            </div>
+
+            {/* Password */}
+            <div className="mt-5">
+
+              <label className="block text-sm font-semibold mb-2">
+                Password
+              </label>
+
+              <div className="relative">
 
                 <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Jane Doe"
-                  className="w-full h-12 rounded-lg border border-slate-300 px-4 outline-none focus:border-[#4F67E8] focus:ring-2 focus:ring-blue-100"
+                  type="password"
+                  placeholder="Create a password"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-16 outline-none focus:border-blue-500"
                 />
+
+                <button
+                  type="button"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-indigo-500"
+                >
+                  Show
+                </button>
 
               </div>
 
+            </div>
 
-              {/* EMAIL */}
-              <div className="mb-4">
+            {/* Confirm */}
+            <div className="mt-5">
 
-                <label className="block text-sm font-semibold mb-2 text-[#0F2942]">
-                  Email address
-                </label>
+              <label className="block text-sm font-semibold mb-2">
+                Confirm password
+              </label>
+
+              <div className="relative">
 
                 <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
-                  className="w-full h-12 rounded-lg border border-slate-300 px-4 outline-none focus:border-[#4F67E8] focus:ring-2 focus:ring-blue-100"
+                  type="password"
+                  placeholder="Confirm your password"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-16 outline-none focus:border-blue-500"
                 />
 
-              </div>
-
-
-              {/* PASSWORD */}
-              <div className="mb-4">
-
-                <label className="block text-sm font-semibold mb-2 text-[#0F2942]">
-                  Password
-                </label>
-
-                <div className="relative">
-
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Create a password"
-                    className="w-full h-12 rounded-lg border border-slate-300 px-4 pr-16 outline-none focus:border-[#4F67E8] focus:ring-2 focus:ring-blue-100"
-                  />
-
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#4F67E8]"
-                  >
-                    {showPassword ? "Hide" : "Show"}
-                  </button>
-
-                </div>
+                <button
+                  type="button"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-indigo-500"
+                >
+                  Show
+                </button>
 
               </div>
 
+            </div>
 
-              {/* CONFIRM PASSWORD */}
-              <div className="mb-5">
+            {/* Create Account */}
+            <button
+              type="button"
+              className="w-full mt-6 py-3 rounded-lg bg-[#5668E8] text-white font-semibold hover:bg-[#4d5fdb]"
+            >
+              Create account
+            </button>
 
-                <label className="block text-sm font-semibold mb-2 text-[#0F2942]">
-                  Confirm password
-                </label>
-
-                <div className="relative">
-
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirm your password"
-                    className="w-full h-12 rounded-lg border border-slate-300 px-4 pr-16 outline-none focus:border-[#4F67E8] focus:ring-2 focus:ring-blue-100"
-                  />
-
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setShowConfirmPassword(!showConfirmPassword)
-                    }
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#4F67E8]"
-                  >
-                    {showConfirmPassword ? "Hide" : "Show"}
-                  </button>
-
-                </div>
-
-              </div>
-
-
-              {/* CREATE ACCOUNT BUTTON */}
-              <button
-                type="submit"
-                className="w-full h-12 rounded-lg bg-[#536BEA] text-white font-semibold hover:bg-[#455DDB] transition"
-              >
-                Create account
-              </button>
-
-            </form>
-
-
-            {/* LOGIN */}
-            <p className="text-center text-sm text-[#64748B] mt-5">
+            {/* Login */}
+            <p className="text-center text-gray-500 mt-6">
 
               Already have an account?{" "}
 
-              <button
-                type="button"
-                className="font-semibold text-[#4F67E8] hover:underline"
+              <Link
+                to="/login"
+                className="text-[#0F2942] font-semibold hover:underline"
               >
                 Log in
-              </button>
+              </Link>
 
             </p>
 
@@ -203,44 +153,32 @@ function Register() {
       </div>
 
 
-      {/* ================= RIGHT SIDE ================= */}
-      <div className="hidden lg:flex lg:w-1/2 min-h-screen bg-[#EEF9FC] items-center justify-center relative overflow-hidden">
+      {/* RIGHT */}
+      <div className="hidden lg:flex w-1/2 bg-[#EEFAFF] items-center justify-center">
 
         <div className="w-full max-w-[650px] px-12">
 
-          {/* AI IMAGE */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-10">
 
             <img
               src={hero}
               alt="AI Dashboard"
-              className="w-[330px] h-[330px] object-contain"
+              className="w-[380px] h-[380px] object-contain"
             />
 
           </div>
 
+          <h2 className="text-4xl font-bold text-[#0F2942]">
+            Transform data.
+            <br />
+            Build insights.
+            <br />
+            AI-driven dashboards.
+          </h2>
 
-          {/* RIGHT SIDE TEXT */}
-          <div>
-
-            <h2 className="text-4xl font-bold leading-tight text-[#18324D]">
-
-              Transform data.
-              <br />
-
-              Build insights.
-              <br />
-
-              AI-driven dashboards.
-
-            </h2>
-
-
-            <p className="mt-5 text-lg text-[#64748B]">
-              Turn raw datasets into clear dashboards with AI.
-            </p>
-
-          </div>
+          <p className="mt-6 text-lg text-gray-500">
+            Turn raw datasets into clear dashboards with AI.
+          </p>
 
         </div>
 

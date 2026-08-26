@@ -1,287 +1,160 @@
-import { useState, type FormEvent } from "react";
-import logo from "../assets/ai-dashboard-logo.png.png";
+import { Link } from "react-router-dom";
 import hero from "../assets/hero.png";
-import PasswordInput from "../components/auth/PasswordInput";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    setError("");
-    setSuccess("");
-
-    if (!email.trim()) {
-      setError("Please enter your email address.");
-      return;
-    }
-
-    if (!password) {
-      setError("Please enter your password.");
-      return;
-    }
-
-    setSuccess("Login details are valid!");
-  };
-
   return (
-    <main className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#F8FAFC] flex">
 
-      <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+      {/* LEFT SIDE */}
+      <div className="w-full lg:w-1/2 flex flex-col">
 
-        {/* ================= LEFT SIDE ================= */}
-        <section className="flex flex-col px-8 py-8 sm:px-12 lg:px-16">
-
-          {/* LOGO - TOP LEFT */}
+        {/* Logo */}
+        <div className="px-8 py-8 lg:px-16">
           <div className="flex items-center gap-3">
-
             <img
-              src={logo}
+              src="/src/assets/ai-dashboard-logo.png.png"
               alt="AI Dashboard Builder"
               className="w-12 h-12 object-contain"
             />
 
-            <div className="font-bold leading-tight text-[#0F2942] text-xl">
-              <div>AI Dashboard</div>
-              <div>Builder</div>
+            <div className="text-[#0F2942] font-bold text-xl leading-tight">
+              AI Dashboard
+              <br />
+              Builder
+            </div>
+          </div>
+        </div>
+
+        {/* FORM */}
+        <div className="flex-1 flex items-center justify-center px-6 pb-10">
+
+          <div className="w-full max-w-[520px] bg-white border border-gray-200 rounded-xl shadow-sm p-8">
+
+            <h1 className="text-3xl font-bold text-[#0F2942]">
+              Welcome back
+            </h1>
+
+            <p className="mt-2 text-gray-500">
+              Login to access your AI Dashboard.
+            </p>
+
+            {/* Email */}
+            <div className="mt-8">
+              <label className="block text-sm font-semibold text-[#0F2942] mb-2">
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                placeholder="your.email@example.com"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
+              />
             </div>
 
-          </div>
+            {/* Password */}
+            <div className="mt-5">
 
+              <div className="flex justify-between items-center mb-2">
 
-          {/* LOGIN CONTENT */}
-          <div className="flex flex-1 items-center justify-center py-10">
+                <label className="text-sm font-semibold text-[#0F2942]">
+                  Password
+                </label>
 
-            <div className="w-full max-w-[540px]">
-
-              {/* LOGIN CARD */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-
-                {/* TITLE */}
-                <h1 className="text-3xl font-bold text-[#0F2942]">
-                  Welcome back
-                </h1>
-
-                <p className="mt-2 text-[#64748B]">
-                  Login to access your AI Dashboard.
-                </p>
-
-
-                {/* FORM */}
-                <form
-                  onSubmit={handleSubmit}
-                  className="mt-7"
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-cyan-600 hover:underline"
                 >
-
-                  {/* EMAIL */}
-                  <div className="mb-5">
-
-                    <label
-                      htmlFor="email"
-                      className="mb-2 block text-sm font-bold text-[#0F2942]"
-                    >
-                      Email Address
-                    </label>
-
-                    <input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(event) =>
-                        setEmail(event.target.value)
-                      }
-                      placeholder="your.email@example.com"
-                      className="w-full h-12 rounded-lg border border-slate-300 bg-white px-4 text-[#0F2942] outline-none transition focus:border-[#536BEA] focus:ring-2 focus:ring-blue-100"
-                    />
-
-                  </div>
-
-
-                  {/* PASSWORD */}
-                  <div className="mb-5">
-
-                    <div className="mb-2 flex items-center justify-between">
-
-                      <label
-                        htmlFor="password"
-                        className="text-sm font-bold text-[#0F2942]"
-                      >
-                        Password
-                      </label>
-
-                      <button
-                        type="button"
-                        className="text-sm font-medium text-[#18A9C7] hover:underline"
-                      >
-                        Forgot password?
-                      </button>
-
-                    </div>
-
-                    <PasswordInput
-                      id="password"
-                      label=""
-                      value={password}
-                      placeholder="Enter your password"
-                      onChange={setPassword}
-                    />
-
-                  </div>
-
-
-                  {/* ERROR MESSAGE */}
-                  {error && (
-                    <div
-                      role="alert"
-                      className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
-                    >
-                      {error}
-                    </div>
-                  )}
-
-
-                  {/* SUCCESS MESSAGE */}
-                  {success && (
-                    <div
-                      role="status"
-                      className="mb-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-600"
-                    >
-                      {success}
-                    </div>
-                  )}
-
-
-                  {/* SIGN IN BUTTON */}
-                  <button
-                    type="submit"
-                    className="w-full h-14 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#18B6CC] text-lg font-semibold text-white transition hover:opacity-90"
-                  >
-                    Sign In
-                  </button>
-
-                </form>
-
-
-                {/* OR DIVIDER */}
-                <div className="my-7 flex items-center gap-3">
-
-                  <div className="h-px flex-1 bg-slate-200" />
-
-                  <span className="text-sm text-[#94A3B8]">
-                    OR
-                  </span>
-
-                  <div className="h-px flex-1 bg-slate-200" />
-
-                </div>
-
-
-                {/* GOOGLE */}
-                <button
-                  type="button"
-                  className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white font-medium text-[#0F2942] transition hover:bg-slate-50"
-                >
-
-                  <span className="text-xl font-bold text-[#4285F4]">
-                    G
-                  </span>
-
-                  <span>
-                    Continue with Google
-                  </span>
-
-                </button>
-
-
-                {/* MICROSOFT */}
-                
-
-                {/* PHONE */}
-                <button
-                  type="button"
-                  className="mt-3 flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white font-medium text-[#0F2942] transition hover:bg-slate-50"
-                >
-
-                  <span className="text-lg">
-                    📱
-                  </span>
-
-                  <span>
-                    Continue with Phone Number
-                  </span>
-
-                </button>
-
-
-                {/* SIGN UP */}
-                <p className="mt-6 text-center text-sm text-[#64748B]">
-
-                  Don't have an account?{" "}
-
-                  <button
-                    type="button"
-                    className="font-semibold text-[#536BEA] hover:underline"
-                  >
-                    Sign up
-                  </button>
-
-                </p>
+                  Forgot password?
+                </Link>
 
               </div>
 
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
+              />
+
             </div>
+
+            {/* Login */}
+            <button
+              type="button"
+              className="w-full mt-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-indigo-600 to-cyan-500"
+            >
+              Sign In
+            </button>
+
+            {/* OR */}
+            <div className="flex items-center gap-4 my-6">
+              <div className="flex-1 h-px bg-gray-200" />
+              <span className="text-sm text-gray-400">OR</span>
+              <div className="flex-1 h-px bg-gray-200" />
+            </div>
+
+            {/* Google */}
+            <button
+              type="button"
+              className="w-full border border-gray-300 rounded-lg py-3 font-medium text-[#0F2942] hover:bg-gray-50"
+            >
+              <span className="font-bold text-blue-500 mr-2">G</span>
+              Continue with Google
+            </button>
+
+            {/* Phone */}
+            <button
+              type="button"
+              className="w-full border border-gray-300 rounded-lg py-3 mt-3 font-medium text-[#0F2942] hover:bg-gray-50"
+            >
+              📱 Continue with Phone Number
+            </button>
+
+            {/* Register */}
+            <p className="text-center text-sm text-gray-500 mt-6">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-cyan-600 font-semibold hover:underline"
+              >
+                Sign up
+              </Link>
+            </p>
 
           </div>
 
-        </section>
+        </div>
+
+      </div>
 
 
-        {/* ================= RIGHT SIDE ================= */}
-        <section className="relative hidden overflow-hidden bg-[#EEF9FC] lg:block">
+      {/* RIGHT SIDE */}
+      <div className="hidden lg:flex w-1/2 bg-[#EEFAFF] items-center justify-center relative overflow-hidden">
 
-         
+        <div className="w-full max-w-[650px] px-12">
 
-
-          {/* AI IMAGE */}
-          <div className="absolute left-1/2 top-[80px] -translate-x-1/2">
-
+          <div className="flex justify-center mb-10">
             <img
               src={hero}
               alt="AI Dashboard"
               className="w-[380px] h-[380px] object-contain"
             />
-
           </div>
 
+          <h2 className="text-4xl font-bold text-[#0F2942]">
+            TRANSFORM DATA.
+            <br />
+            BUILD INSIGHTS.
+          </h2>
 
-          {/* RIGHT SIDE TEXT */}
-          <div className="absolute bottom-[65px] left-16 xl:left-20">
+          <p className="mt-6 text-lg text-gray-500">
+            Turn raw datasets into clear dashboards with AI.
+          </p>
 
-            <h2 className="text-5xl font-bold leading-tight text-[#243B53]">
-
-              TRANSFORM DATA.
-              <br />
-
-              BUILD INSIGHTS.
-
-            </h2>
-
-            <p className="mt-5 text-lg text-[#64748B]">
-              Turn raw datasets into clear dashboards with AI.
-            </p>
-
-          </div>
-
-        </section>
+        </div>
 
       </div>
 
-    </main>
+    </div>
   );
 }
 
