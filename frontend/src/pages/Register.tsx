@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import hero from "../assets/hero.png";
+import PasswordInput from "../components/auth/PasswordInput";
 
 function Register() {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
 
@@ -75,52 +80,26 @@ function Register() {
             {/* Password */}
             <div className="mt-5">
 
-              <label className="block text-sm font-semibold mb-2">
-                Password
-              </label>
-
-              <div className="relative">
-
-                <input
-                  type="password"
-                  placeholder="Create a password"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-16 outline-none focus:border-blue-500"
-                />
-
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-indigo-500"
-                >
-                  Show
-                </button>
-
-              </div>
+              <PasswordInput
+                id="password"
+                label="Password"
+                value={password}
+                placeholder="Create a password"
+                onChange={setPassword}
+              />
 
             </div>
 
-            {/* Confirm */}
+            {/* Confirm Password */}
             <div className="mt-5">
 
-              <label className="block text-sm font-semibold mb-2">
-                Confirm password
-              </label>
-
-              <div className="relative">
-
-                <input
-                  type="password"
-                  placeholder="Confirm your password"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-16 outline-none focus:border-blue-500"
-                />
-
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-indigo-500"
-                >
-                  Show
-                </button>
-
-              </div>
+              <PasswordInput
+                id="confirmPassword"
+                label="Confirm password"
+                value={confirmPassword}
+                placeholder="Confirm your password"
+                onChange={setConfirmPassword}
+              />
 
             </div>
 
@@ -151,7 +130,6 @@ function Register() {
         </div>
 
       </div>
-
 
       {/* RIGHT */}
       <div className="hidden lg:flex w-1/2 bg-[#EEFAFF] items-center justify-center">
