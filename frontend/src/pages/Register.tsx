@@ -1,11 +1,51 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import hero from "../assets/hero.png";
 import PasswordInput from "../components/auth/PasswordInput";
 
 function Register() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const handleRegister = async () => {
+  if (!email || !password || !confirmPassword) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.detail || "Registration failed.");
+      return;
+    }
+
+    alert("Account created successfully!");
+    navigate("/login");
+
+  } catch (error) {
+    console.error("Registration error:", error);
+    alert("Unable to connect to the backend.");
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
@@ -71,9 +111,11 @@ function Register() {
 
               <input
                 type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="name@example.com"
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
-              />
+               />
 
             </div>
 
@@ -106,10 +148,11 @@ function Register() {
             {/* Create Account */}
             <button
               type="button"
+              onClick={handleRegister}
               className="w-full mt-6 py-3 rounded-lg bg-[#5668E8] text-white font-semibold hover:bg-[#4d5fdb]"
-            >
-              Create account
-            </button>
+              >
+                Create account
+              </button>
 
             {/* Login */}
             <p className="text-center text-gray-500 mt-6">

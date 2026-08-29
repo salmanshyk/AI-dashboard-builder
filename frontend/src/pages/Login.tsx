@@ -1,7 +1,50 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import hero from "../assets/hero.png";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleLogin = async () => {
+  if (!email || !password) {
+    alert("Please enter your email and password.");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.detail || "Login failed.");
+      return;
+    }
+
+    localStorage.setItem("access_token", data.access_token);
+
+    alert("Login successful!");
+
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Unable to connect to the backend.");
+  } finally {
+    setLoading(false);
+  }
+};
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
 
@@ -11,6 +54,7 @@ function Login() {
         {/* Logo */}
         <div className="px-8 py-8 lg:px-16">
           <div className="flex items-center gap-3">
+
             <img
               src="/src/assets/ai-dashboard-logo.png.png"
               alt="AI Dashboard Builder"
@@ -22,6 +66,7 @@ function Login() {
               <br />
               Builder
             </div>
+
           </div>
         </div>
 
@@ -40,6 +85,7 @@ function Login() {
 
             {/* Email */}
             <div className="mt-8">
+
               <label className="block text-sm font-semibold text-[#0F2942] mb-2">
                 Email Address
               </label>
@@ -47,8 +93,11 @@ function Login() {
               <input
                 type="email"
                 placeholder="your.email@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
               />
+
             </div>
 
             {/* Password */}
@@ -72,6 +121,8 @@ function Login() {
               <input
                 type="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
               />
 
@@ -80,16 +131,24 @@ function Login() {
             {/* Login */}
             <button
               type="button"
-              className="w-full mt-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-indigo-600 to-cyan-500"
+              onClick={handleLogin}
+              disabled={loading}
+              className="w-full mt-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-indigo-600 to-cyan-500 disabled:opacity-60"
             >
-              Sign In
+            {loading ? "Signing in..." : "Sign In"}
             </button>
-
+            
             {/* OR */}
             <div className="flex items-center gap-4 my-6">
+
               <div className="flex-1 h-px bg-gray-200" />
-              <span className="text-sm text-gray-400">OR</span>
+
+              <span className="text-sm text-gray-400">
+                OR
+              </span>
+
               <div className="flex-1 h-px bg-gray-200" />
+
             </div>
 
             {/* Google */}
@@ -97,7 +156,10 @@ function Login() {
               type="button"
               className="w-full border border-gray-300 rounded-lg py-3 font-medium text-[#0F2942] hover:bg-gray-50"
             >
-              <span className="font-bold text-blue-500 mr-2">G</span>
+              <span className="font-bold text-blue-500 mr-2">
+                G
+              </span>
+
               Continue with Google
             </button>
 
@@ -111,13 +173,16 @@ function Login() {
 
             {/* Register */}
             <p className="text-center text-sm text-gray-500 mt-6">
+
               Don't have an account?{" "}
+
               <Link
                 to="/register"
                 className="text-cyan-600 font-semibold hover:underline"
               >
                 Sign up
               </Link>
+
             </p>
 
           </div>
@@ -126,18 +191,19 @@ function Login() {
 
       </div>
 
-
       {/* RIGHT SIDE */}
       <div className="hidden lg:flex w-1/2 bg-[#EEFAFF] items-center justify-center relative overflow-hidden">
 
         <div className="w-full max-w-[650px] px-12">
 
           <div className="flex justify-center mb-10">
+
             <img
               src={hero}
               alt="AI Dashboard"
               className="w-[380px] h-[380px] object-contain"
             />
+
           </div>
 
           <h2 className="text-4xl font-bold text-[#0F2942]">
