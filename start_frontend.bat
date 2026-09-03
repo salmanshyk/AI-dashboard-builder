@@ -17,6 +17,6 @@ echo.
 echo Press CTRL+C to stop the frontend.
 echo.
 
-npm run dev
+npm run dev -- --host 0.0.0.0
 
 pause

@@ -8,6 +8,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
     if (!email || !password || !confirmPassword) {
@@ -20,42 +21,87 @@ function Register() {
       return;
     }
 
+    setLoading(true);
+
     try {
+      /*
+        Use Vite Proxy.
+
+        Frontend:
+        /api/auth/signup
+
+        Vite Proxy:
+        ↓
+        http://10.53.8.143:8000/api/auth/signup
+      */
+
       const response = await fetch(
-        "http://127.0.0.1:8000/api/auth/signup",
+        "/api/auth/signup",
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
+            Accept: "application/json",
           },
+
           body: JSON.stringify({
-            email: email,
+            email: email.trim(),
             password: password,
           }),
         }
       );
 
+      console.log(
+        "Registration response status:",
+        response.status
+      );
+
       const data = await response.json();
 
+      console.log(
+        "Registration response:",
+        data
+      );
+
       if (!response.ok) {
-        alert(data.detail || "Registration failed.");
+        alert(
+          data?.detail ||
+          "Registration failed."
+        );
         return;
       }
 
       alert("Account created successfully!");
+
       navigate("/login");
+
     } catch (error) {
-      console.error("Registration error:", error);
-      alert("Unable to connect to the backend.");
+      console.error(
+        "Registration error:",
+        error
+      );
+
+      alert(
+        "Unable to connect to the backend."
+      );
+
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
 
-      {/* LOGO */}
+      {/* ================================
+          LOGO
+      ================================= */}
+
       <div className="w-full px-6 py-6 sm:px-8 sm:py-8">
+
         <div className="flex items-center gap-3">
+
           <img
             src="/src/assets/ai-dashboard-logo.png.png"
             alt="AI Dashboard Builder"
@@ -67,12 +113,21 @@ function Register() {
             <br />
             Builder
           </div>
+
         </div>
+
       </div>
 
-      {/* CENTERED REGISTER */}
+
+      {/* ================================
+          CENTERED REGISTER
+      ================================= */}
+
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 pb-8 sm:pb-12">
+
         <div className="w-full max-w-[560px] bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-8">
+
+          {/* HEADING */}
 
           <h1 className="text-2xl sm:text-3xl font-bold text-[#0F2942]">
             Create your account
@@ -82,8 +137,13 @@ function Register() {
             Start building AI-powered dashboards in minutes.
           </p>
 
-          {/* FULL NAME */}
+
+          {/* ================================
+              FULL NAME
+          ================================= */}
+
           <div className="mt-6 sm:mt-8">
+
             <label className="block text-sm font-semibold text-[#0F2942] mb-2">
               Full name
             </label>
@@ -93,10 +153,16 @@ function Register() {
               placeholder="Jane Doe"
               className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
+
           </div>
 
-          {/* EMAIL */}
+
+          {/* ================================
+              EMAIL
+          ================================= */}
+
           <div className="mt-5">
+
             <label className="block text-sm font-semibold text-[#0F2942] mb-2">
               Email address
             </label>
@@ -104,14 +170,22 @@ function Register() {
             <input
               type="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) =>
+                setEmail(event.target.value)
+              }
               placeholder="name@example.com"
               className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
+
           </div>
 
-          {/* PASSWORD */}
+
+          {/* ================================
+              PASSWORD
+          ================================= */}
+
           <div className="mt-5">
+
             <PasswordInput
               id="password"
               label="Password"
@@ -119,10 +193,16 @@ function Register() {
               placeholder="Create a password"
               onChange={setPassword}
             />
+
           </div>
 
-          {/* CONFIRM PASSWORD */}
+
+          {/* ================================
+              CONFIRM PASSWORD
+          ================================= */}
+
           <div className="mt-5">
+
             <PasswordInput
               id="confirmPassword"
               label="Confirm password"
@@ -130,19 +210,32 @@ function Register() {
               placeholder="Confirm your password"
               onChange={setConfirmPassword}
             />
+
           </div>
 
-          {/* CREATE ACCOUNT */}
+
+          {/* ================================
+              CREATE ACCOUNT
+          ================================= */}
+
           <button
             type="button"
             onClick={handleRegister}
-            className="w-full mt-6 py-3 rounded-lg bg-[#5668E8] text-white font-semibold hover:bg-[#4d5fdb] transition"
+            disabled={loading}
+            className="w-full mt-6 py-3 rounded-lg bg-[#5668E8] text-white font-semibold hover:bg-[#4d5fdb] transition disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Create account
+            {loading
+              ? "Creating account..."
+              : "Create account"}
           </button>
 
-          {/* LOGIN */}
+
+          {/* ================================
+              LOGIN
+          ================================= */}
+
           <p className="text-center text-sm text-gray-500 mt-6">
+
             Already have an account?{" "}
 
             <Link
@@ -151,10 +244,13 @@ function Register() {
             >
               Log in
             </Link>
+
           </p>
 
         </div>
+
       </div>
+
     </div>
   );
 }

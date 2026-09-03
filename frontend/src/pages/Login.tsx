@@ -15,33 +15,79 @@ function Login() {
     setLoading(true);
 
     try {
+      /*
+        AI Dashboard Builder Backend
+
+        PC:
+        http://10.53.8.143:8000
+
+        Mobile:
+        http://10.53.8.143:8000
+
+        Using the PC's Wi-Fi IP allows both
+        PC and mobile to access the same backend.
+      */
+      const API_BASE_URL = "";
+
+      console.log("Login request URL:");
+      console.log(`${API_BASE_URL}/api/auth/login`);
+
       const response = await fetch(
-        "http://127.0.0.1:8000/api/auth/login",
+        `${API_BASE_URL}/api/auth/login`,
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
+            Accept: "application/json",
           },
+
           body: JSON.stringify({
-            email: email,
+            email: email.trim(),
             password: password,
           }),
         }
       );
 
+      console.log("Backend response status:", response.status);
+
       const data = await response.json();
 
+      console.log("Backend response:", data);
+
       if (!response.ok) {
-        alert(data.detail || "Login failed.");
+        const errorMessage =
+          data?.detail || "Login failed. Please check your credentials.";
+
+        alert(errorMessage);
         return;
       }
 
-      localStorage.setItem("access_token", data.access_token);
+      /*
+        Save JWT access token
+      */
+      if (data.access_token) {
+        localStorage.setItem(
+          "access_token",
+          data.access_token
+        );
+      }
 
       alert("Login successful!");
+
+      console.log("Login successful.");
+      console.log("Access token saved.");
+
     } catch (error) {
-      console.error("Login error:", error);
-      alert("Unable to connect to the backend.");
+      console.error("================================");
+      console.error("LOGIN ERROR");
+      console.error("================================");
+      console.error(error);
+
+      alert(
+        "Unable to connect to the backend.\n\n" +
+        "Please make sure the backend is running."
+      );
     } finally {
       setLoading(false);
     }
@@ -50,9 +96,14 @@ function Login() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
 
-      {/* LOGO */}
+      {/* ================================
+          LOGO
+      ================================= */}
+
       <div className="w-full px-6 py-6 sm:px-8 sm:py-8">
+
         <div className="flex items-center gap-3">
+
           <img
             src="/src/assets/ai-dashboard-logo.png.png"
             alt="AI Dashboard Builder"
@@ -64,12 +115,21 @@ function Login() {
             <br />
             Builder
           </div>
+
         </div>
+
       </div>
 
-      {/* CENTERED LOGIN */}
+
+      {/* ================================
+          CENTERED LOGIN
+      ================================= */}
+
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 pb-8 sm:pb-12">
+
         <div className="w-full max-w-[520px] bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-8">
+
+          {/* HEADING */}
 
           <h1 className="text-2xl sm:text-3xl font-bold text-[#0F2942]">
             Welcome back
@@ -79,8 +139,13 @@ function Login() {
             Login to access your AI Dashboard.
           </p>
 
-          {/* EMAIL */}
+
+          {/* ================================
+              EMAIL
+          ================================= */}
+
           <div className="mt-6 sm:mt-8">
+
             <label className="block text-sm font-semibold text-[#0F2942] mb-2">
               Email Address
             </label>
@@ -92,11 +157,18 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
+
           </div>
 
-          {/* PASSWORD */}
+
+          {/* ================================
+              PASSWORD
+          ================================= */}
+
           <div className="mt-5">
+
             <div className="flex justify-between items-center mb-2 gap-2">
+
               <label className="text-sm font-semibold text-[#0F2942]">
                 Password
               </label>
@@ -107,6 +179,7 @@ function Login() {
               >
                 Forgot password?
               </Link>
+
             </div>
 
             <input
@@ -116,9 +189,14 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
+
           </div>
 
-          {/* SIGN IN */}
+
+          {/* ================================
+              SIGN IN
+          ================================= */}
+
           <button
             type="button"
             onClick={handleLogin}
@@ -128,8 +206,13 @@ function Login() {
             {loading ? "Signing in..." : "Sign In"}
           </button>
 
-          {/* OR */}
+
+          {/* ================================
+              OR
+          ================================= */}
+
           <div className="flex items-center gap-4 my-6">
+
             <div className="flex-1 h-px bg-gray-200" />
 
             <span className="text-sm text-gray-400">
@@ -137,9 +220,14 @@ function Login() {
             </span>
 
             <div className="flex-1 h-px bg-gray-200" />
+
           </div>
 
-          {/* GOOGLE */}
+
+          {/* ================================
+              GOOGLE
+          ================================= */}
+
           <button
             type="button"
             className="w-full border border-gray-300 rounded-lg py-3 font-medium text-[#0F2942] hover:bg-gray-50 transition"
@@ -147,10 +235,15 @@ function Login() {
             <span className="font-bold text-blue-500 mr-2">
               G
             </span>
+
             Continue with Google
           </button>
 
-          {/* PHONE */}
+
+          {/* ================================
+              PHONE
+          ================================= */}
+
           <button
             type="button"
             className="w-full border border-gray-300 rounded-lg py-3 mt-3 font-medium text-[#0F2942] hover:bg-gray-50 transition"
@@ -158,8 +251,13 @@ function Login() {
             📱 Continue with Phone Number
           </button>
 
-          {/* REGISTER */}
+
+          {/* ================================
+              REGISTER
+          ================================= */}
+
           <p className="text-center text-sm text-gray-500 mt-6">
+
             Don't have an account?{" "}
 
             <Link
@@ -168,10 +266,13 @@ function Login() {
             >
               Sign up
             </Link>
+
           </p>
 
         </div>
+
       </div>
+
     </div>
   );
 }
