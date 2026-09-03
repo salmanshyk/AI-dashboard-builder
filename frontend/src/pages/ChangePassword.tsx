@@ -1,140 +1,90 @@
 import { useNavigate } from "react-router-dom";
-import hero from "../assets/hero.png";
 
 function ChangePassword() {
-
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
 
-      {/* LEFT */}
-      <div className="w-full lg:w-1/2 flex flex-col">
+      {/* LOGO */}
+      <div className="w-full px-6 py-6 sm:px-8 sm:py-8">
+        <div className="flex items-center gap-3">
+          <img
+            src="/src/assets/ai-dashboard-logo.png.png"
+            alt="AI Dashboard Builder"
+            className="w-11 h-11 sm:w-12 sm:h-12 object-contain"
+          />
 
-        {/* Logo */}
-        <div className="px-8 py-8 lg:px-16">
-
-          <div className="flex items-center gap-3">
-
-            <img
-              src="/src/assets/ai-dashboard-logo.png.png"
-              alt="AI Dashboard Builder"
-              className="w-12 h-12 object-contain"
-            />
-
-            <div className="text-[#0F2942] font-bold text-xl leading-tight">
-              AI Dashboard
-              <br />
-              Builder
-            </div>
-
+          <div className="text-[#0F2942] font-bold text-lg sm:text-xl leading-tight">
+            AI Dashboard
+            <br />
+            Builder
           </div>
-
         </div>
-
-        {/* FORM */}
-        <div className="flex-1 flex items-center justify-center px-6 pb-10">
-
-          <div className="w-full max-w-[520px] bg-white border border-gray-200 rounded-xl shadow-sm p-8">
-
-            <h1 className="text-3xl font-bold text-[#0F2942]">
-              Change Password
-            </h1>
-
-            <p className="mt-2 text-gray-500">
-              Set a new secure password for your AI Dashboard.
-            </p>
-
-            {/* Current */}
-            <div className="mt-8">
-
-              <label className="block text-sm font-semibold mb-2">
-                Current Password
-              </label>
-
-              <input
-                type="password"
-                placeholder="Current Password"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
-              />
-
-            </div>
-
-            {/* New */}
-            <div className="mt-5">
-
-              <label className="block text-sm font-semibold mb-2">
-                New Password
-              </label>
-
-              <input
-                type="password"
-                placeholder="New Password"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
-              />
-
-            </div>
-
-            {/* Confirm */}
-            <div className="mt-5">
-
-              <label className="block text-sm font-semibold mb-2">
-                Confirm New Password
-              </label>
-
-              <input
-                type="password"
-                placeholder="Confirm New Password"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
-              />
-
-            </div>
-
-            {/* Update */}
-            <button
-              type="button"
-              onClick={() => navigate("/login")}
-              className="w-full mt-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-cyan-500 to-indigo-600"
-            >
-              Update Password
-            </button>
-
-          </div>
-
-        </div>
-
       </div>
 
+      {/* CENTERED CHANGE PASSWORD */}
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 pb-8 sm:pb-12">
+        <div className="w-full max-w-[520px] bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-8">
 
-      {/* RIGHT */}
-      <div className="hidden lg:flex w-1/2 bg-[#EEFAFF] items-center justify-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#0F2942]">
+            Change Password
+          </h1>
 
-        <div className="w-full max-w-[650px] px-12">
-
-          <div className="flex justify-center mb-10">
-
-            <img
-              src={hero}
-              alt="AI Dashboard"
-              className="w-[380px] h-[380px] object-contain"
-            />
-
-          </div>
-
-          <h2 className="text-4xl font-bold text-[#0F2942]">
-            TRANSFORM DATA.
-            <br />
-            BUILD INSIGHTS.
-          </h2>
-
-          <p className="mt-6 text-lg text-gray-500">
-            Turn raw datasets into clear dashboards with AI.
+          <p className="mt-2 text-sm sm:text-base text-gray-500">
+            Set a new secure password for your AI Dashboard.
           </p>
 
+          {/* CURRENT PASSWORD */}
+          <div className="mt-6 sm:mt-8">
+            <label className="block text-sm font-semibold text-[#0F2942] mb-2">
+              Current Password
+            </label>
+
+            <input
+              type="password"
+              placeholder="Current Password"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* NEW PASSWORD */}
+          <div className="mt-5">
+            <label className="block text-sm font-semibold text-[#0F2942] mb-2">
+              New Password
+            </label>
+
+            <input
+              type="password"
+              placeholder="New Password"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* CONFIRM PASSWORD */}
+          <div className="mt-5">
+            <label className="block text-sm font-semibold text-[#0F2942] mb-2">
+              Confirm New Password
+            </label>
+
+            <input
+              type="password"
+              placeholder="Confirm New Password"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm sm:text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* UPDATE PASSWORD */}
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+            className="w-full mt-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-cyan-500 to-indigo-600 hover:opacity-95 transition"
+          >
+            Update Password
+          </button>
+
         </div>
-
       </div>
-
     </div>
   );
 }
