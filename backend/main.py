@@ -1,3 +1,4 @@
+from routers.dataset import router as dataset_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers.auth import router as auth_router
@@ -23,6 +24,7 @@ app.add_middleware(
 
 # Auth router ko include kar rahe hain taaki /api/auth/signup aur /login chalein
 app.include_router(auth_router)
+app.include_router(dataset_router)
 
 @app.get("/")
 def read_root():
